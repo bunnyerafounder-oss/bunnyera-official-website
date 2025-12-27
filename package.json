@@ -2,10 +2,9 @@
   "name": "bunnyera-official-website",
   "version": "1.0.0",
   "description": "BunnyEra 官方网站，展示 Modular AI Commerce Matrix 的愿景与架构",
-  "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx serve .",
+    "build": "echo 'No build step required for static site'"
   },
   "repository": {
     "type": "git",
@@ -17,17 +16,12 @@
     "Console",
     "Matrix",
     "NotifyCenter",
-    "Electron",
     "Website"
   ],
   "author": "BunnyEra LLC",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bunnyerafounder-oss/bunnyera-official-website/issues"
   },
-  "homepage": "https://github.com/bunnyerafounder-oss/bunnyera-official-website#readme",
-  "devDependencies": {
-    "electron": "^30.0.0"
-  }
+  "homepage": "https://github.com/bunnyerafounder-oss/bunnyera-official-website#readme"
 }
