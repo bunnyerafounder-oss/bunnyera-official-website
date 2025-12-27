@@ -1,0 +1,48 @@
+:root {
+  --bg: #0c0e12;
+  --bg-soft: #12151b;
+  --text: #e6e7ea;
+  --text-dim: #b4b8c2;
+  --accent: #d7b56d;   /* 金色 */
+  --accent-2: #8a6f2b; /* 深金色 */
+  --border: #1c212b;
+  --radius: 14px;
+  --maxw: 1080px;
+}
+
+/* 基础 */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* 页头 */
+.site-header { background: var(--bg-soft); border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.logo { width: 64px; }
+.nav a { margin-left: 16px; color: var(--text); }
+.nav .cta { border: 1px solid var(--accent-2); padding: 6px 12px; border-radius: 8px; }
+
+/* 横幅 */
+.hero { text-align: center; padding: 64px 20px; background: var(--bg); }
+.hero h2 { font-size: 32px; margin-bottom: 12px; }
+.hero p { color: var(--text-dim); max-width: 720px; margin: 0 auto 20px; }
+.btn { display: inline-block; padding: 10px 16px; border-radius: 8px; font-weight: bold; }
+.btn.primary { background: var(--accent); color: #0c0e12; }
+.btn.ghost { border: 1px solid var(--border); color: var(--text); }
+
+/* 模块卡片 */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.card { background: var(--bg-soft); padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); }
+.card h4 { margin-top: 0; }
+
+/* 页脚 */
+.site-footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 20px 0; }
+.footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; }
+.footer-links { list-style: none; padding: 0
