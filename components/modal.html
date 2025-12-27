@@ -1,0 +1,54 @@
+<div id="be-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>模組詳情</h2>
+    <p>這裡可以放置模組的詳細介紹、技術文檔或操作說明。</p>
+    <a class="btn btn-primary" href="#">立即操作</a>
+  </div>
+</div>
+
+<script>
+  // Modal 打開與關閉邏輯
+  const modal = document.getElementById("be-modal");
+  const closeBtn = document.querySelector(".modal .close");
+
+  // 打開 Modal 的示例
+  function openModal() {
+    modal.style.display = "block";
+  }
+
+  // 關閉 Modal
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+  .modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    text-align: center;
+  }
+  .modal .close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+</style>

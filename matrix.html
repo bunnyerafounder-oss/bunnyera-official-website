@@ -2,21 +2,38 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Matrix 模組｜BunnyEra</title>
+  <meta name="description" content="BunnyEra Matrix 模組，提供商業帳號矩陣與資源池管理，支援跨境電商與合規化擴展。">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="be-navbar">
-    <a href="index.html">← 返回首頁</a>
-  </header>
-  <main class="be-content">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Hero -->
+  <section class="be-hero">
     <h1>Matrix 模組</h1>
-    <p>商業帳號矩陣與資源池管理，支持合規與擴展。</p>
-    <ul>
-      <li>帳號矩陣管理</li>
-      <li>資源池整合</li>
-      <li>跨境合規支持</li>
-    </ul>
+    <p>商業帳號矩陣與資源池管理，支援跨境電商與合規化擴展。</p>
+  </section>
+
+  <!-- Modules -->
+  <main class="be-content">
+    <section class="be-modules">
+      <div class="card"><h3>帳號矩陣管理</h3><p>統一管理多平台商業帳號。</p></div>
+      <div class="card"><h3>資源池整合</h3><p>集中管理虛擬號碼、郵箱與支付資源。</p></div>
+      <div class="card"><h3>合規擴展</h3><p>提供合規化的帳號註冊與維護。</p></div>
+      <div class="card"><h3>自動化工具</h3><p>結合 RPA 與 API，自動化帳號流程。</p></div>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- JS -->
+  <script>
+    fetch("components/header.html").then(r=>r.text()).then(d=>document.getElementById("header").innerHTML=d);
+    fetch("components/footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+  </script>
 </body>
 </html>

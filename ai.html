@@ -2,21 +2,38 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AI 模組｜BunnyEra</title>
+  <meta name="description" content="BunnyEra AI 模組，提供智能化的決策支持、自動化流程與數據分析，提升企業運營效率。">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="be-navbar">
-    <a href="index.html">← 返回首頁</a>
-  </header>
-  <main class="be-content">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Hero -->
+  <section class="be-hero">
     <h1>AI 模組</h1>
     <p>智能模組與自動化流程，幫助企業提升運營效率。</p>
-    <ul>
-      <li>智能任務執行</li>
-      <li>自動化工作流</li>
-      <li>AI 驅動的商業工具</li>
-    </ul>
+  </section>
+
+  <!-- Modules -->
+  <main class="be-content">
+    <section class="be-modules">
+      <div class="card"><h3>智能任務執行</h3><p>AI 驅動的任務分配與執行。</p></div>
+      <div class="card"><h3>自動化工作流</h3><p>支援批量處理與流程自動化。</p></div>
+      <div class="card"><h3>AI 商業工具</h3><p>結合 NLP 與 ML，提供智慧化支持。</p></div>
+      <div class="card"><h3>數據分析</h3><p>基於 AI 的數據分析與預測。</p></div>
+    </section>
   </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- JS -->
+  <script>
+    fetch("components/header.html").then(r=>r.text()).then(d=>document.getElementById("header").innerHTML=d);
+    fetch("components/footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+  </script>
 </body>
 </html>
