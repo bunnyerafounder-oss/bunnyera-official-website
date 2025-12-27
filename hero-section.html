@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BunnyEra Hero Section</title>
+    <style>
+        /* Hero区域样式 */
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-green: #10b981;
+            --accent-cyan: #06b6d4;
+            --dark-bg: #0A0A23;
+            --darker-bg: #1A1A3A;
+            --white: #ffffff;
+            --gradient-hero: linear-gradient(135deg, #0A0A23, #1A1A3A);
+            --shadow-glow: 0 0 30px rgba(37, 99, 235, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Hero区域 */
+        .hero-section {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            animation: slideInRight 1s ease-out;
+        }
+
+        /* 科技兔子SVG */
+        .bunny-svg {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            animation: bunnyFloat 4s ease-in-out infinite;
+        }
+
+        .bunny-main {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.5));
+            animation: bunnyGlow 3s ease-in-out infinite;
+        }
+
+        /* 粒子效果 */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 30%; right: 15%; animation-delay: 1s; }
+        .particle:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 40%; left: 60%; animation-delay: 3s; }
+        .particle:nth-child(5) { bottom: 30%; right: 25%; animation-delay: 4s; }
+        .particle:nth-child(6) { top: 60%; left: 80%; animation-delay: 5s; }
+
+        /* 背景装饰 */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border: 2px solid rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            animation: circleRotate 20s linear infinite;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 5s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 30%;
+            animation-delay: 10s;
+        }
+
+        /* 动画定义 */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bunnyFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-10px) rotate(-1deg);
+            }
+        }
+
+        @keyframes bunnyGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.8));
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-120px) scale(0);
+            }
+        }
+
+        @keyframes circleRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 耳朵摆动动画 */
+        @keyframes earWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 5% 3%;
+            }
+            
+            .hero-left {
+                margin-bottom: 3rem;
+                max-width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .bunny-svg {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .bunny-svg {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .hero-cta {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .bunny-svg {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero区域 -->
+    <section class="hero-section">
+        <!-- 背景装饰 -->
+        <div class="bg-decoration">
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+        </div>
+
+        <!-- 粒子效果 -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- 左侧文字区 -->
+        <div class="hero-left">
+            <h1 class="hero-title">BunnyEra</h1>
+            <p class="hero-subtitle">未来感品牌矩阵 · AI 与系统的融合</p>
+            <a href="#matrix" class="hero-cta">进入矩阵</a>
+        </div>
+
+        <!-- 右侧图像区 -->
+        <div class="hero-right">
+            <div class="bunny-svg">
+                <svg class="bunny-main" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 兔子主体 -->
+                    <defs>
+                        <linearGradient id="bunnyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/> 
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- 兔子身体 -->
+                    <ellipse cx="250" cy="300" rx="80" ry="100" fill="url(#bunnyGradient)" filter="url(#glow)"/>
+                    
+                    <!-- 兔子头部 -->
+                    <circle cx="250" cy="200" r="60" fill="url(#bunnyGradient)" filter="url(#glow)"/>
+                    
+                    <!-- 左耳朵 -->
+                    <ellipse cx="220" cy="120" rx="15" ry="60" fill="url(#bunnyGradient)" filter="url(#glow)" transform="rotate(-15 220 120)">
+                        <animateTransform
+                            attributeName="transform"
+                            type="rotate"
+                            values="-15 220 120;-20 220 120;-15 220 120"
+                            dur="4s"
+                            repeatCount="indefinite"/>
+                    </ellipse>
+                    
+                    <!-- 右耳朵 -->
+                    <ellipse cx="280" cy="120" rx="15" ry="60" fill="url(#bunnyGradient)" filter="url(#glow)" transform="rotate(15 280 120)">
+                        <animateTransform
+                            attributeName="transform"
+                            type="rotate"
+                            values="15 280 120;20 280 120;15 280 120"
+                            dur="4s"
+                            repeatCount="indefinite"/>
+                    </ellipse>
+                    
+                    <!-- 眼睛 -->
+                    <circle cx="230" cy="190" r="8" fill="#ffffff">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="270" cy="190" r="8" fill="#ffffff">
+                        <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- 眼睛光点 -->
+                    <circle cx="232" cy="188" r="3" fill="#06b6d4">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="272" cy="188" r="3" fill="#06b6d4">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- 鼻子 -->
+                    <ellipse cx="250" cy="205" rx="4" ry="3" fill="#10b981"/>
+                    
+                    <!-- 嘴巴 -->
+                    <path d="M 240 215 Q 250 220 260 215" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- 胡须 -->
+                    <line x1="200" y1="200" x2="180" y2="195" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+                    <line x1="200" y1="205" x2="180" y2="205" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+                    <line x1="300" y1="200" x2="320" y2="195" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+                    <line x1="300" y1="205" x2="320" y2="205" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+                    
+                    <!-- AI 核心粒子 -->
+                    <circle cx="250" cy="250" r="5" fill="#06b6d4" opacity="0.8">
+                        <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- 环绕粒子 -->
+                    <circle cx="200" cy="250" r="3" fill="#06b6d4" opacity="0.6">
+                        <animateTransform
+                            attributeName="transform"
+                            type="rotate"
+                            values="0 250 250;360 250 250"
+                            dur="8s"
+                            repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="300" cy="250" r="3" fill="#06b6d4" opacity="0.6">
+                        <animateTransform
+                            attributeName="transform"
+                            type="rotate"
+                            values="0 250 250;360 250 250"
+                            dur="8s"
+                            repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- 神经网络线条 -->
+                    <line x1="250" y1="200" x2="200" y2="150" stroke="#06b6d4" stroke-width="1" opacity="0.5">
+                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="250" y1="200" x2="300" y2="150" stroke="#06b6d4" stroke-width="1" opacity="0.5">
+                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="250" y1="250" x2="220" y2="300" stroke="#06b6d4" stroke-width="1" opacity="0.5">
+                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                    <line x1="250" y1="250" x2="280" y2="300" stroke="#06b6d4" stroke-width="1" opacity="0.5">
+                        <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+                    </line>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroLeft = document.querySelector('.hero-left');
+            const heroRight = document.querySelector('.hero-right');
+            const particles = document.querySelectorAll('.particle');
+            
+            // 左侧文字淡入
+            heroLeft.style.opacity = '0';
+            heroLeft.style.transform = 'translateX(-50px)';
+            
+            // 右侧图像淡入
+            heroRight.style.opacity = '0';
+            heroRight.style.transform = 'translateX(50px)';
+            
+            setTimeout(() => {
+                heroLeft.style.transition = 'all 1s ease-out';
+                heroLeft.style.opacity = '1';
+                heroLeft.style.transform = 'translateX(0)';
+                
+                heroRight.style.transition = 'all 1s ease-out';
+                heroRight.style.opacity = '1';
+                heroRight.style.transform = 'translateX(0)';
+            }, 300);
+            
+            // 粒子效果
+            particles.forEach((particle, index) => {
+                particle.style.opacity = '0';
+                setTimeout(() => {
+                    particle.style.transition = 'opacity 0.5s ease';
+                    particle.style.opacity = '1';
+                }, 1000 + index * 200);
+            });
+            
+            // CTA按钮涟漪效果
+            const ctaBtn = document.querySelector('.hero-cta');
+            ctaBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // 添加涟漪动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                0% { transform: scale(0); opacity: 1; }
+                100% { transform: scale(4); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 滚动视差效果
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const particles = document.querySelector('.particles');
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            if (particles) {
+                particles.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

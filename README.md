@@ -1,18 +1,95 @@
-# BunnyEra 技術官網
+# BunnyEra 官方網站 - 微軟風格現代化版本
 
-BunnyEra 技術官網是一個基於 **HTML + CSS** 的靜態網站，展示 BunnyEra 的四大核心模組：Console、AI、Matrix、Notify。  
-網站採用 **組件化設計**，方便維護與擴展。
+## 項目概述
+BunnyEra 是一個現代化的 AI 電商平台，經過全面重新設計，採用微軟風格的現代化界面，提供智能桌面工具、AI 解決方案和跨境電商矩陣服務。
 
----
+## 主要特性
+### 🎨 現代化設計
+- **微軟風格界面**：採用現代科技藍色調配色方案
+- **繁體中文支援**：完整的繁體中文介面與字體優化
+- **響應式設計**：適配桌面、平板、手機等各種設備
+- **現代字體搭配**：使用 Noto Sans TC 和 Microsoft JhengHei
 
-## 📂 專案結構
-bunnyera-website/ │── index.html              # 首頁（Hero 橫幅 + 模組卡片） │── console.html            # Console 模組頁面 │── ai.html                 # AI 模組頁面 │── matrix.html             # Matrix 模組頁面 │── notify.html             # Notify 模組頁面 │── styles.css              # 全站樣式 │ ├── components/             # 公共組件 │   ├── header.html         # 導覽列 │   ├── footer.html         # 頁腳 │   ├── card.html           # 卡片模板 │   └── modal.html          # 彈窗模板 │ ├── assets/                 # 靜態資源 │   ├── images/             # 圖片資源 │   │   ├── banner.jpg      # 首頁橫幅背景 │   │   ├── logo.png        # 品牌 Logo │   │   ├── ai.png          # AI 模組圖標 │   │   ├── console.png     # Console 模組圖標 │   │   ├── matrix.png      # Matrix 模組圖標 │   │   └── notify.png      # Notify 模組圖標 │   └── icons/              # 其他圖標 │ └── scripts/                # 前端交互腳本 └── main.js             # 全局交互邏輯
+### 🚀 增強功能
+- **滾動輪播橫幅**：自動切換的 hero 區域，展示核心產品
+- **動態卡片效果**：功能卡片懸停動畫與漸變效果
+- **滾動觸發動畫**：元素進入視口時的優雅動畫
+- **平滑滾動**：導航連結的平滑滾動效果
 
----
+### 📱 四大核心區域
+1. **桌面工具區域**：展示智能桌面工具的功能與預覽
+2. **AI 解決方案區域**：深色主題的 AI 功能展示
+3. **功能模組區域**：Console、AI、Matrix、Notify 四大模組
+4. **品牌願景區域**：企業願景與價值觀展示
 
-## 🚀 使用方式
+## 技術實現
+### CSS 現代化
+- **CSS 變數系統**：統一的顏色、字體、陰影變數
+- **漸變背景**：多處使用線性漸變增強視覺效果
+- **毛玻璃效果**：backdrop-filter 實現現代毛玻璃效果
+- **網格佈局**：CSS Grid 實現響應式卡片佈局
 
-1. **下載專案**
+### JavaScript 交互
+- **輪播橫幅控制**：自動切換、手動控制、指示器
+- **Intersection Observer**：高效的滾動動畫觸發
+- **漣漪效果**：按鈕點擊的 Material Design 漣漪效果
+- **導航欄滾動**：滾動時的透明度和陰影變化
+
+### 性能優化
+- **延遲加載動畫**：卡片依次出現的延遲效果
+- **CSS 硬體加速**：使用 transform 和 opacity 實現流暢動畫
+- **載入動畫**：頁面載入時的淡入效果
+
+## 文件結構
+```
+/
+├── index.html          # 主頁面（微軟風格重新設計）
+├── styles.css          # 現代化樣式（科技藍配色）
+├── main.js            # 增強交互腳本（輪播+動畫）
+└── assets/
+    └── images/        # 圖片資源
+```
+
+## 使用說明
+1. **本地預覽**：
    ```bash
-   git clone https://github.com/your-repo/bunnyera-website.git
-   cd bunnyera-website
+   python -m http.server 8000
+   # 訪問 http://localhost:8000
+   ```
+
+2. **直接打開**：
+   使用現代瀏覽器直接打開 `index.html`
+
+## 設計靈感
+- **微軟 Fluent Design**：現代、簡潔、層次感
+- **科技藍配色**：主色調 #2563eb，輔助色 #10b981
+- **中文在地化**：完整的繁體中文介面支援
+- **現代卡片設計**：圓角、陰影、漸變的組合運用
+
+## 技術棧
+- **HTML5**：語義化標籤結構
+- **CSS3**：現代 CSS 特性（Grid、Flexbox、變數）
+- **JavaScript ES6+**：模組化、箭頭函數、解構賦值
+- **Google Fonts**：Noto Sans TC 字體載入
+
+## 瀏覽器兼容性
+- ✅ Chrome 80+
+- ✅ Firefox 75+
+- ✅ Safari 13+
+- ✅ Edge 80+
+- ⚠️ Internet Explorer：不支援（建議升級瀏覽器）
+
+## 更新日誌
+### v2.0 (2024)
+- ✨ 全面微軟風格重新設計
+- 🎨 新增科技藍配色方案
+- 🌐 優化繁體中文支援
+- 📱 新增滾動輪播橫幅
+- 🚀 增強交互動畫效果
+- 📐 改進響應式設計
+
+## 版權信息
+© 2024 BunnyEra. All rights reserved.
+
+---
+**注意**：此版本為微軟風格現代化重製版，保留了原有功能並大幅提升了視覺效果和用戶體驗。
